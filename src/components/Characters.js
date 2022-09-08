@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import Character from "./Character";
 
 export default function Characters() {
   const url = "https://rickandmortyapi.com/api/character";
@@ -16,9 +17,9 @@ export default function Characters() {
     return <div>Error</div>;
   } else {
     return (
-      <div>
+      <div className="characters">
         {data.results.map((character) => (
-          <div key={character.id}>{character.name}</div>
+          <Character character={character} />
         ))}
       </div>
     );
