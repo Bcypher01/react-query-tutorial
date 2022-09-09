@@ -11,7 +11,7 @@ export default function Characters() {
     );
     return response.json();
   };
-  const { data, status, isPreviousData, isLoading, isError } = useQuery(
+  const { data, isPreviousData, isLoading, error } = useQuery(
     ["characters", page],
     fetchCharacters,
     {
@@ -20,10 +20,14 @@ export default function Characters() {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        <h3>Loading...</h3>
+      </div>
+    );
   }
-  if (isError) {
-    return <div>Error</div>;
+  if (error) {
+    return <div>An error occured: {error.message}</div>;
   } else {
     return (
       <div className="characters">
