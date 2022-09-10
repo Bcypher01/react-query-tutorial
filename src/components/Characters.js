@@ -31,9 +31,8 @@ export default function Characters() {
   } else {
     return (
       <div className="characters">
-        {data.results.map((character) => (
-          <Character character={character} />
-        ))}
+        {data &&
+          data.results.map((character) => <Character character={character} />)}
         <div>
           <button
             disabled={page === 1}
