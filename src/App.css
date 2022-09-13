@@ -66,6 +66,10 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+.text-white {
+  color: white;
+}
+
 button {
   padding: 1rem 4rem;
   font-size: 2rem;

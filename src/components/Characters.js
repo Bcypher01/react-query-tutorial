@@ -30,22 +30,26 @@ export default function Characters() {
     return <div>An error occured: {error.message}</div>;
   } else {
     return (
-      <div className="characters">
-        {data &&
-          data.results.map((character) => <Character character={character} />)}
-        <div>
-          <button
-            disabled={page === 1}
-            onClick={() => setPage((old) => old - 1)}
-          >
-            Previous
-          </button>
-          <button
-            disabled={!data.info.next && isPreviousData}
-            onClick={() => setPage((old) => old + 1)}
-          >
-            Next
-          </button>
+      <div>
+        <h1>Rick and morty</h1>
+        <div className="characters">
+          {data?.results.map((character) => (
+            <Character character={character} />
+          ))}
+          <div>
+            <button
+              disabled={page === 1}
+              onClick={() => setPage((old) => old - 1)}
+            >
+              Previous
+            </button>
+            <button
+              disabled={!data.info.next && isPreviousData}
+              onClick={() => setPage((old) => old + 1)}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     );
