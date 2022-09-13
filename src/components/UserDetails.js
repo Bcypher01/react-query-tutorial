@@ -3,11 +3,15 @@ import { useQuery } from "react-query";
 import * as api from "../usersApi";
 
 export default function UserDetails({ userId }) {
-  const { data: user, isLoading } = useQuery(["user", userId], () =>
-    api.getUser(userId)
+  const { data: user, isLoading } = useQuery(
+    ["user", userId],
+    () => api.getUser(userId),
+    {
+      enabled: Boolean(userId),
+    }
   );
   if (!userId) {
-    return <h3>Select a user</h3>;
+    return <h3 className="text-white">Select a user</h3>;
   }
 
   if (isLoading) {
