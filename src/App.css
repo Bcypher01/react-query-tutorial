@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.flex {
+  display: flex;
+}
+
 h1 {
   padding: 2.5rem 0;
   color: white;
@@ -81,7 +85,6 @@ button {
   width: 30%;
   border-right: 2px solid white;
 }
-
-.flex {
-  display: flex;
+.p-10 {
+  padding: 10px;
 }

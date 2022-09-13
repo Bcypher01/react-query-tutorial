@@ -15,12 +15,12 @@ export default function UserDetails({ userId }) {
   }
 
   if (isLoading) {
-    return <h3>Loading user details</h3>;
+    return <h3 className="text-white">Loading user details</h3>;
   }
   return (
-    <div style={{ padding: 20, width: "70%" }}>
-      <h3 className="text-white">{user.name}</h3>
-      <p className="text-white">{user.details}</p>
+    <div style={{ padding: 40, width: "70%" }}>
+      <h3 className="text-white p-10">{user.name}</h3>
+      <p className="text-white p-10">{user.details}</p>
     </div>
   );
 }
