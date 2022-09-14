@@ -10,4 +10,4 @@ export const getUser = (id) =>
   api.get(`/user-detail/${id}`).then((res) => res.data);
 
 export const updateUser = ({ id, ...updateUser }) =>
-  api.put(`/users/${id}`, updateUser).then((res) => res.data);
+  api.put(`/user-detail/${id}`, updateUser).then((res) => res.data);

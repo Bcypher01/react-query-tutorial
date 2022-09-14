@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import * as api from "../usersApi";
+import UserForm from "./UserForm";
 
 export default function UserDetails({ userId }) {
+  const [isEditing, setIsEditing] = useState(false);
+
   const { data: user, isLoading } = useQuery(
     ["user", userId],
     () => api.getUser(userId),
@@ -10,8 +13,9 @@ export default function UserDetails({ userId }) {
       enabled: Boolean(userId),
     }
   );
+
   if (!userId) {
-    return <h3 className="text-white">Select a user</h3>;
+    return <h3 className="text-white margin-1">Select a user</h3>;
   }
 
   if (isLoading) {
@@ -19,8 +23,17 @@ export default function UserDetails({ userId }) {
   }
   return (
     <div style={{ padding: 40, width: "70%" }}>
-      <h3 className="text-white p-10">{user.name}</h3>
-      <p className="text-white p-10">{user.details}</p>
+      <button onClick={() => setIsEditing(!isEditing)}>
+        {isEditing ? "CANCEL" : "EDIT"}
+      </button>
+      {isEditing ? (
+        <UserForm user={user} setIsEditing={setIsEditing} />
+      ) : (
+        <div>
+          <h3 className="text-white p-10">{user.name}</h3>
+          <p className="text-white p-10">{user.details}</p>
+        </div>
+      )}
     </div>
   );
 }

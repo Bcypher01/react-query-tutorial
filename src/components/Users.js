@@ -5,10 +5,13 @@ import * as api from "../usersApi";
 import UserDetails from "./UserDetails";
 const Users = () => {
   const [userId, setUserId] = useState();
-  const { data, isLoading, isError } = useQuery("users", api.getUsers);
+  const { data, isLoading, isError, isFetching } = useQuery(
+    "users",
+    api.getUsers
+  );
 
   if (isLoading) {
-    return <h3>Loading...</h3>;
+    return <h3 className="text-white">Loading...</h3>;
   }
 
   if (isError) {
@@ -21,12 +24,14 @@ const Users = () => {
           {data?.map((user) => (
             <li key={user.id}>
               {user.name}
-              <button onClick={() => setUserId(user.id)}>View</button>
+              <button className="margin-1" onClick={() => setUserId(user.id)}>
+                View
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <UserDetails userId={userId} />
+      <UserDetails userId={userId} isFetching={isFetching} />
     </div>
   );
 };
