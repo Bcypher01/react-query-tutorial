@@ -14,7 +14,6 @@ const UserForm = ({ user }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(fields);
     mutate(fields);
   };
 
