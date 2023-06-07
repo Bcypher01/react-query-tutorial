@@ -10,7 +10,6 @@ const Users = () => {
     api.getUsers().then((data) => {
       if (mounted) {
         setUsers(data);
-        console.log(data);
       }
     });
 

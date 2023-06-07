@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -13,7 +13,6 @@ export default function Summary() {
     axios.get(url).then((data) => {
       if (mounted) {
         setSummary(data);
-        console.log(data);
       }
     });
 
@@ -22,9 +21,9 @@ export default function Summary() {
     };
   }, []);
 
-  let hs = summary.data?.summary;
-  let theObj = { __html: hs };
   if (summary.data) {
+    let hs = summary.data?.summary;
+    let theObj = { __html: hs };
     return (
       <div className="border mx-12 mt-4 flex space-x-12 shadow-md">
         <img src={summary.data?.image.medium} alt="" />
@@ -39,7 +38,7 @@ export default function Summary() {
     );
   } else {
     return (
-      <h1 className="font-semibold text-3xl text-center">
+      <h1 className="font-semibold text-3xl mt-24 text-center">
         This movie was not found in our database
       </h1>
     );
