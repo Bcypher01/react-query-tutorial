@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const ShowList = ({ users }) => {
   return (
-    <div className="p-4 w-8/12 space-y-4">
+    <div className="p-4 w-9/12 content-center space-y-4">
       {users?.map((user) => {
         let us = user.show;
 

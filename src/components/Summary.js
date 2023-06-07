@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 export default function Summary() {
   const { id } = useParams();
   const [summary, setSummary] = useState([]);
-  let url = `https://api.tvmaze.com/singlesearch/shows?q=${id}`;
 
   useEffect(() => {
     let mounted = true;
+    let url = `https://api.tvmaze.com/singlesearch/shows?q=${id}`;
     axios.get(url).then((data) => {
       if (mounted) {
         setSummary(data);
@@ -19,7 +19,7 @@ export default function Summary() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [id]);
 
   if (summary.data) {
     let hs = summary.data?.summary;
@@ -30,7 +30,11 @@ export default function Summary() {
         <div>
           <h1 className="py-2 text-2xl font-semibold">{summary.data?.name}</h1>
           <div className="pb-4" dangerouslySetInnerHTML={theObj} />
-          <Link className="text-blue-400 pb-4" to="/">
+          <Link className="text-blue-400 pb-4 pr-4" to="/">
+            Book Ticket here
+          </Link>
+          OR
+          <Link className="text-blue-400 pb-4 pl-4" to="/">
             Go back to previous page
           </Link>
         </div>
