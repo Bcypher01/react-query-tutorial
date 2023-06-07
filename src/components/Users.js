@@ -1,37 +1,28 @@
 import React from "react";
-import { useState } from "react";
-import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 import * as api from "../usersApi";
-import UserDetails from "./UserDetails";
+import { ShowList } from "./ShowList";
+
 const Users = () => {
-  const [userId, setUserId] = useState();
-  const { data, isLoading, isError, isFetching } = useQuery(
-    "users",
-    api.getUsers
-  );
+  const [users, setUsers] = useState([]);
 
-  if (isLoading) {
-    return <h3 className="text-white">Loading...</h3>;
-  }
+  useEffect(() => {
+    let mounted = true;
+    api.getUsers().then((data) => {
+      if (mounted) {
+        setUsers(data);
+        console.log(data);
+      }
+    });
 
-  if (isError) {
-    return <h3>Something went wrong!!!</h3>;
-  }
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
-    <div className="flex">
-      <div className="w-30 text-white">
-        <ul>
-          {data?.map((user) => (
-            <li key={user.id}>
-              {user.name}
-              <button className="margin-1" onClick={() => setUserId(user.id)}>
-                View
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <UserDetails userId={userId} isFetching={isFetching} />
+    <div className="m-12">
+      <ShowList users={users} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import React from "react";
+import { useHistory, useParams } from "react-router-dom";
 
-export default function Character({ character }) {
+export default function Summary({ character }) {
   return (
-    <div className="card" key={character.id}>
+    <div className="border shadow-md" key={character.id}>
       <img src={character.image} alt="" />
       <div className="text-container">
         <h3>{character.name}</h3>
